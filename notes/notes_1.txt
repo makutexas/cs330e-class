@@ -1,0 +1,28 @@
+﻿- Software Engineering:
+The concept first appeared at a NATO conference in Germany in 1968 to handle a software crisis.
+
+The causes of the software crisis were linked to the overall complexity of hardware 
+and the software development process. 
+The crisis manifested itself in several ways:
+- Projects running over-budget
+- Projects running over-time
+- Software was very inefficient
+- Software was of low quality
+- Software often did not meet requirements
+- Projects were unmanageable and code was difficult to maintain
+Source: https://en.wikipedia.org/wiki/Software_crisis
+
+Software activities (or processes) vs Software development models
+- Activities required to develop a software system. 
+Activities include analysis, design, implementation, verification and validation (testing), and maintenance. 
+
+A software development model is an abstract representation of a process. It presents a description 
+of a process from some particular perspective.
+Basic development models are 
+- waterfall, 
+- incremental, and 
+- reuse-oriented software development.
+Source: Sommerville, Software Engineering, 10 ed., Chapter 2
+
+Software Engineering: Software engineering is concerned with theories, methods and tools for professional software development.
+According to IEEE’s definition software engineering can be defined as the application of a systematic, disciplined, quantifiable approach to the development, operation, and maintenance of software, and the study of these approaches; that is, the application of engineering to software.
