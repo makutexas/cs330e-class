@@ -20,7 +20,11 @@ def cycle_length (n) :
 
 print("Assertions.py")
 
-assert cycle_length( 1) == 1
+#Checking code using assertions
+#Assertions are NOT good for unittests because they stop the program if they fail
+#Assertions are NOT good for catching user errors
+
+assert cycle_length( 1) == 1 
 assert cycle_length( 5) == 6
 assert cycle_length(10) == 7
 
@@ -38,7 +42,7 @@ AssertionError
 
 
 
-$ python3 -O Assertions.py
+$ python3 -O Assertions.py (-O overwrites the permissions)
 Assertions.py
 Done.
 """
