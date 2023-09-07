@@ -1,0 +1,160 @@
+# https://docker-curriculum.com/
+# https://docs.docker.com/engine/reference/commandline/cli/
+# https://docs.docker.com/engine/install/
+$ docker --version
+Docker version 24.0.5, build ced0996
+
+
+
+$ docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+
+
+$ cat dockerfile
+FROM python:3
+
+RUN apt-get update            && \
+    apt-get -y install vim    && \
+    apt-get install -y dos2unix
+
+RUN pip install --upgrade pip && \
+    pip --version             && \
+    pip install autopep8      && \
+    pip install coverage      && \
+    pip install mypy          && \
+    pip install pylint        && \
+    pip install numpy         && \
+    pip list
+
+CMD bash
+
+
+
+# --tag , -t: Name and optionally a tag in the 'name:tag' format
+# If you don't specify a tag, "latest" is assigned
+$ docker build -t fareszf/python .
+...
+
+
+
+$ docker login
+...
+
+
+
+$ docker push fareszf/python
+...
+
+
+
+$ docker pull fareszf/python
+...
+
+
+
+$ docker images
+REPOSITORY       TAG       IMAGE ID       CREATED         SIZE
+fareszf/python   latest    5b54e04934c7   7 minutes ago   1.26GB
+
+
+$ pwd
+/c/Users/Fares/Documents/demo
+
+$ ls
+dockerfile
+
+# -it flag starts the container in the interactive mode,, otherwise will work in the background.  
+# -v  flag mounts the current working directory into the container. 
+# -w  flag specifies working directory inside the container. 
+# For Mac machines.
+# $ docker run -it -v /Users/Fares/Documents/demo:/usr/cs330e -w /usr/cs330e fareszf/python
+# For Windows machines.
+$ docker run -it -v /c:/Users/Fares/Documents/demo://usr/cs330e -w //usr/cs330e fareszf/python
+root@b41e4137ff62:/usr/cs330e# ls
+dockerfile
+
+root@b41e4137ff62:/usr/cs330e# which coverage
+/usr/local/bin/coverage
+
+root@b41e4137ff62:/usr/cs330e# coverage --version
+Coverage.py, version 7.3.0 with C extension
+Full documentation is at https://coverage.readthedocs.io/en/7.3.0
+
+
+root@b41e4137ff62:/usr/cs330e# which git
+/usr/bin/git
+
+root@b41e4137ff62:/usr/cs330e# git --version
+git version 2.39.2
+
+
+
+root@b41e4137ff62:/usr/cs330e# which make
+/usr/bin/make
+
+root@b41e4137ff62:/usr/cs330e# make --version
+GNU Make 4.3
+...
+
+
+
+root@b41e4137ff62:/usr/cs330e# which pip
+/usr/local/bin/pip
+
+root@b41e4137ff62:/usr/cs330e# pip --version
+pip 23.2.1 from /usr/local/lib/python3.11/site-packages/pip (python 3.11)
+
+root@b41e4137ff62:/usr/cs330e# pip list
+Package           Version
+----------------- -------
+astroid           2.15.6
+autopep8          2.0.4
+coverage          7.3.0
+dill              0.3.7
+isort             5.12.0
+lazy-object-proxy 1.9.0
+mccabe            0.7.0
+mypy              1.5.1
+mypy-extensions   1.0.0
+numpy             1.25.2
+pip               23.2.1
+platformdirs      3.10.0
+pycodestyle       2.11.0
+Pygments          2.16.1
+pylint            2.17.5
+setuptools        65.5.1
+tomlkit           0.12.1
+typing_extensions 4.7.1
+wheel             0.41.2
+wrapt             1.15.0
+
+
+root@b41e4137ff62:/usr/cs330e# which pylint
+/usr/local/bin/pylint
+
+root@b41e4137ff62:/usr/cs330e# pylint --version
+pylint 2.17.5
+astroid 2.15.6
+Python 3.11.5 (main, Aug 25 2023, 23:47:33) [GCC 12.2.0]
+
+
+
+root@b41e4137ff62:/usr/cs330e# which python
+/usr/local/bin/python
+
+root@b41e4137ff62:/usr/cs330e# python --version
+Python 3.11.5
+root@b41e4137ff62:/usr/cs330e#
+
+
+root@b41e4137ff62:/usr/cs330e# which vim
+/usr/bin/vim
+
+root@b41e4137ff62:/usr/cs330e# vim --version
+VIM - Vi IMproved 9.0 (2022 Jun 28, compiled May 04 2023 10:24:44)
+
+
+root@b41e4137ff62:/usr/cs330e# exit
+exit
+
+$
