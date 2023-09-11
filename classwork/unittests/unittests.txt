@@ -1,0 +1,102 @@
+Unittest classwork: work individually to accomplish the following.
+
+---------------------
+Before you start, make sure you have the following. 
+(1) A Command-line shell:  "Bash" for Windows or "Terminal" for Mac
+(2) A Text Editor: I'll use "notepad++"
+(3) have access to basic Linux/Unix commands sheet:
+https://www.cs.utexas.edu/~fares/cs330ef23/CS%20373_files/tutorials/UnixCommands.pdf
+--------------------
+
+(1) On your local machine (i.e., your laptop), create a Python file "Avg.py" that contains the following 
+piece of code:
+
+def avg(marks):
+	assert len(marks) != 0
+	return sum(marks)/len(marks)
+
+assert avg([2])     == 1 
+assert avg([1,2,3]) == 2
+
+
+(2) In your command-line shell, type in the following command
+
+	$ python Avg.py
+	Traceback (most recent call last):
+  	File "Avg.py", line 5, in <module>
+    	assert avg([2])     == 1
+	AssertionError
+
+	Note: assertions are not recommeded for testing since the failure of one assertion stops 
+        the execution of the rest of the assertions and stops the program's execution as well.
+	Alternatively, unittests are used to test Python programs. See the PPT on Canvas for the 
+        details on the strcuture of unittests.
+
+(3) Create the unittest file "AvgTest.py" with the following contents. 
+Note: you need to comment the last two lines in "Avg.py" (the two assertions).
+	
+	from unittest import main, TestCase
+	from Avg import avg
+
+	class MyUnitTests (TestCase) :
+	   def test_1 (self) :
+             self.assertEqual(avg([1,2,3]),  2)
+
+	if __name__ == "__main__" :
+    		main()
+
+
+(4) Run the unit tests.
+	$ python AvgTest.py
+	.
+	----------------------------------------------------------------------
+	Ran 1 test in 0.000s
+
+	OK
+
+(5) coverage:Test coverage or code coverage is used to measure the percent of your code covered by a test. 
+
+	(5.1) Run coverage: Running coverage will present the same output as "python AvgTest.py" but will 
+	create a hidden file, ".coverage", that contains the coverage info.
+	$ coverage run --branch AvgTest.py
+	.
+	----------------------------------------------------------------------
+	Ran 1 test in 0.000s
+
+	OK
+
+	(5.2) Printing out the coverage info.
+
+	$ coverage report -m
+	Name         Stmts   Miss Branch BrPart  Cover   Missing
+	--------------------------------------------------------
+	Avg.py           3      0      0      0   100%
+	AvgTest.py       7      0      2      1    89%   8->exit
+	--------------------------------------------------------
+	TOTAL           10      0      2      1    92%
+    ** You may have slightly different output depending on the version of coverage that you're using. ** 
+	
+	(5.3) Build a makefile to run the coverage command and save the unittest results and the coverage info
+	to the file "AvgTest.tmp". Create a "makefile" that contains the following:
+	AvgTest.tmp: Avg.py AvgTest.py
+		coverage run --branch AvgTest.py > AvgTest.tmp 2>&1
+		coverage report -m                   >> AvgTest.tmp
+		cat AvgTest.tmp
+
+
+	(5.4) Execute the "make" command using the target AvgTest.tmp.
+	$ make AvgTest.tmp
+
+	coverage report -m                   >> AvgTest.tmp
+	cat AvgTest.tmp
+	.
+	----------------------------------------------------------------------
+	Ran 1 test in 0.001s
+
+	OK
+	Name         Stmts   Miss Branch BrPart  Cover   Missing
+	--------------------------------------------------------
+	Avg.py           3      0      0      0   100%
+	AvgTest.py       7      0      0      0   100%
+	--------------------------------------------------------
+	TOTAL           10      0      0      0   100%
