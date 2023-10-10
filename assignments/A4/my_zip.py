@@ -1,17 +1,16 @@
 def my_zip(*args):
     """Functionally equivalent to zip()"""
+    if not args:
+        return []
 
-    #Turn all args into iterators
+    # Create iterators for all args
     iter_args = []
     for i in args:
-        if i == list() or i == tuple():
-            pass
-        if type(i) == list or type(i) == tuple:
-            iter_args.append(iter(i))
-        else:
-            iter_args.append(i)
+        if isinstance(i, (list, tuple)) and not i:  # Check for empty list or tuple
+            return []
+        iter_args.append(iter(i))
 
-    #Create tuples and add to result
+    # Create tuples and add to result
     result = []
     while True:
         iter_tuple = ()
@@ -25,5 +24,4 @@ def my_zip(*args):
     return result
 
 if __name__ == "__main__":
-    print(my_zip((2, 3), (4, 5), (6, 7)))
-        
+    pass

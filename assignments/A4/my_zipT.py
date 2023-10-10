@@ -3,6 +3,15 @@ from my_zip import *
 # tests for my_zip
 def test_zip () :
    print("my_zip()")
+   print( 
+      list(my_zip()) ,
+      list(my_zip([])),
+      list(my_zip((), ())),
+      list(my_zip([2, 3])),
+      list(my_zip((2, 3), (4, 5), (6, 7))),
+      list(my_zip([2, 3, 4], [5, 6, 7])),
+      list(my_zip(iter([2, 3, 4]), iter([5, 6, 7])))
+   )
    assert list(my_zip()) == []
    assert list(my_zip([])) == []
    assert list(my_zip((), ())) == []
